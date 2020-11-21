@@ -27,6 +27,8 @@ from datetime import date, timedelta
 
 from billogram_api import BillogramAPI, BillogramExceptions
 
+API_URL = 'https://sandbox.billogram.com/api/v2'
+
 
 def create_connection():
     """Create an API pseudo-connection object for the examples
@@ -36,13 +38,10 @@ def create_connection():
     """
 
     # Get the credentials from standard input
-    # username = input("Enter API username: ").strip()
-    # authkey = input("Enter API authentication key: ").strip()
-    # api_urlbase = input(
-    #     "API URL base (or blank for default): ").strip() or None
-    username = '9843-x15fpy1h'
-    authkey = '2542f158e4e649d23b892f4c1ca23725'
-    api_urlbase = 'https://sandbox.billogram.com/api/v2'
+    username = input("Enter API username: ").strip()
+    authkey = input("Enter API authentication key: ").strip()
+    api_urlbase = input(
+        "API URL base (or blank for default): ").strip() or API_URL
 
     # The BillogramAPI constructor can optionally
     # take api_base and user_agent if you
@@ -69,7 +68,7 @@ async def example1(api):
         'customer': {
             # On creation, only the customer_no can be specified.
             'customer_no': 1,
-            'email': 'trash@everalerta.com',
+            'email': 'trash@example.com',
         },
         # Specifying the items being invoiced for,
         # can either be from the database or single-use ones
