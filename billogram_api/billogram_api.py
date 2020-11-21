@@ -500,8 +500,9 @@ class Query:
     async def get_page(self, page_number):
         """Fetch objects for the one-based page number"""
         resp = await self._make_query(int(page_number))
+        cls = await self._type_class.url()
         return [
-            self._type_class._object_class(
+            cls(
                 self._type_class.api,
                 self._type_class,
                 o
@@ -540,6 +541,10 @@ class SimpleClass:
         if obj_id is None:
             obj_id = await obj.get(self._object_id_field)
         return '{}/{}'.format(self.url_name, obj_id)
+
+    async def url(self):
+        """Get url"""
+        return self._object_class
 
     @property
     def url_name(self):
