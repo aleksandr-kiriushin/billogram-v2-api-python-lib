@@ -15,5 +15,5 @@ setup(
     long_description=long_description,
     url='https://billogram.com/api/documentation',
     license='MIT',
-    py_modules=['billogram_api'],
+    packages=['billogram_api'],
 )
